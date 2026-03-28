@@ -228,20 +228,21 @@ const App = () => {
       </div>
 
       {/* Main 3x3 Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-stretch">
         {pillars.map((pillar, pIdx) => (
-          <div key={pIdx} className="flex flex-col">
+          <div key={pIdx} className="flex flex-col h-full">
             <div className={`border-l-4 ${pillar.color} pl-4 mb-8`}>
               <h2 className="text-2xl font-bold text-slate-900">{pillar.title}</h2>
               <p className="text-slate-500 text-sm mt-1 leading-relaxed">{pillar.description}</p>
             </div>
             
-            <div className="space-y-4">
+            {/* Cards container now uses flex-grow and flex-col to force equal distribution */}
+            <div className="flex flex-col gap-4 flex-grow">
               {pillar.modules.map((module) => (
                 <div 
                   key={module.id}
                   onClick={() => setSelectedModule(module)}
-                  className={`relative group p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col
+                  className={`relative group p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col flex-grow
                     ${hoveredModule === module.id 
                         ? 'bg-white border-blue-400 shadow-xl -translate-y-1' 
                         : 'bg-white border-slate-100 shadow-sm hover:border-slate-300'}
@@ -259,7 +260,9 @@ const App = () => {
                   </div>
                   
                   <h3 className="font-bold text-lg mb-1 leading-tight">{module.name}</h3>
-                  <p className="text-xs mb-4 leading-relaxed text-slate-500">
+                  
+                  {/* flex-grow on the detail text ensures the footer is pushed to the bottom */}
+                  <p className="text-xs mb-4 leading-relaxed text-slate-500 flex-grow">
                     {module.detail}
                   </p>
                   
@@ -390,7 +393,7 @@ const App = () => {
           >
             <button 
               onClick={() => setShowReadmeModal(false)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors"
+              className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-colors"
             >
               <X size={24} />
             </button>
