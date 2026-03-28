@@ -236,12 +236,12 @@ const App = () => {
               <p className="text-slate-500 text-sm mt-1 leading-relaxed">{pillar.description}</p>
             </div>
             
-            <div className="space-y-4 flex-grow">
+            <div className="space-y-4">
               {pillar.modules.map((module) => (
                 <div 
                   key={module.id}
                   onClick={() => setSelectedModule(module)}
-                  className={`relative group p-6 rounded-2xl border transition-all duration-300 cursor-pointer h-full flex flex-col
+                  className={`relative group p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col
                     ${hoveredModule === module.id 
                         ? 'bg-white border-blue-400 shadow-xl -translate-y-1' 
                         : 'bg-white border-slate-100 shadow-sm hover:border-slate-300'}
@@ -258,14 +258,16 @@ const App = () => {
                     </div>
                   </div>
                   
-                  <h3 className="font-bold text-lg mb-1">{module.name}</h3>
-                  <p className="text-xs mb-4 leading-relaxed text-slate-500 flex-grow">
+                  <h3 className="font-bold text-lg mb-1 leading-tight">{module.name}</h3>
+                  <p className="text-xs mb-4 leading-relaxed text-slate-500">
                     {module.detail}
                   </p>
                   
-                  <div className="flex items-center gap-2 mt-auto">
+                  <div className="flex items-center gap-2 border-t border-slate-50 pt-4 mt-2">
                     <BarChart3 size={14} className={pillar.textColor} />
-                    <span className="text-[10px] font-bold uppercase opacity-80">Primary KPI: {module.kpi}</span>
+                    <span className="text-[10px] font-black uppercase opacity-60 tracking-tighter">
+                      Primary KPI: {module.kpi}
+                    </span>
                   </div>
 
                   <ChevronRight size={16} className={`absolute right-4 bottom-4 transition-all duration-300 ${hoveredModule === module.id ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`} />
@@ -443,7 +445,7 @@ const App = () => {
           onClick={() => setShowContactPopup(false)}
         >
           <div 
-            className="bg-white rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden relative animate-in zoom-in-95 duration-300"
+            className="bg-white rounded-[2rem] shadow-2xl w-full max-md overflow-hidden relative animate-in zoom-in-95 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-8 text-center">
@@ -506,7 +508,7 @@ const App = () => {
               className="relative z-10 bg-blue-600 hover:bg-blue-500 transition-all px-12 py-6 rounded-2xl font-black text-2xl cursor-pointer shadow-2xl shadow-blue-600/40 active:scale-95 group text-white"
             >
               Get Started 
-              <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={20} />
             </button>
 
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -mr-40 -mt-40"></div>
